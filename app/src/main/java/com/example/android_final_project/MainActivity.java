@@ -1,5 +1,6 @@
 package com.example.android_final_project;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.Button;
@@ -10,6 +11,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.snackbar.Snackbar;
 
@@ -27,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
     Handler handle;
 
     HangMan hang;
+
+    RecyclerView word;
 
 
     public static String makeRequest(String apiUrl) throws Exception{
@@ -80,6 +86,28 @@ public class MainActivity extends AppCompatActivity {
         hang = findViewById(R.id.hangMan);
         run = findViewById(R.id.run);
         reset = findViewById(R.id.gameReset);
+        word = findViewById(R.id.word);
+
+
+        String phrase = "ILOVEPIZZA";
+
+        String[] test = new String[phrase.length()];
+
+        for(int i = 0; i < phrase.length(); i++){
+
+            test[i] = String.valueOf(phrase.charAt(i));
+
+        }
+        word.setAdapter(new CustomAdapter(test));
+
+        word.setLayoutManager(new GridLayoutManager(this,5));
+
+
+
+
+
+        //word.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
+
 
         reset.setOnClickListener(r -> {
 
