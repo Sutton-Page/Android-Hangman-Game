@@ -34,44 +34,6 @@ public class MainActivity extends AppCompatActivity {
 
     RecyclerView word;
 
-
-    public static String makeRequest(String apiUrl) throws Exception{
-
-        URL request = new URL(apiUrl);
-        HttpURLConnection con = (HttpURLConnection) request.openConnection();
-        con.setRequestMethod("GET");
-
-        BufferedReader in = new BufferedReader(
-                new InputStreamReader(con.getInputStream()));
-
-        String inputLine;
-
-        StringBuffer content = new StringBuffer();
-        while ((inputLine = in.readLine()) != null) {
-            content.append(inputLine);
-        }
-        in.close();
-        con.disconnect();
-
-        return content.toString();
-
-    }
-
-    public static String listVideos(List<Video> videos,int limit){
-
-        String message = "";
-
-        for(int i =0; i < limit; i++){
-
-            Video item = videos.get(i);
-            message+= item.getTitle() + "\n" + item.getUrl() + "\n";
-        }
-
-
-        return message;
-    }
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -104,11 +66,6 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
-
-        //word.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
-
-
         reset.setOnClickListener(r -> {
 
                 hang.resetGuess();
@@ -132,45 +89,6 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
-        /*
-        handle = new Handler(Looper.getMainLooper());
-
-        run = findViewById(R.id.run);
-        display = findViewById(R.id.display);
-
-        run.setOnClickListener((event) -> {
-
-            Thread thread = new Thread(() ->{
-
-                YoutubeApi api = new YoutubeApi("US","25",12);
-                try {
-                    String result = makeRequest(api.getVideoAPIUrl());
-                    List<Video> parsedData = YoutubeApi.parseJson(result);
-
-                    String message = listVideos(parsedData,5);
-
-                    handle.post(() ->{
-
-                        display.append(message);
-
-                    });
-
-
-                } catch (Exception e) {
-                    Log.d("URL",e.getMessage());
-                    throw new RuntimeException(e);
-                }
-
-
-
-
-            });
-
-            thread.start();
-
-        });
-
-        */
 
     }
 }
