@@ -29,7 +29,6 @@ public class MainActivity extends AppCompatActivity {
 
     Button run;
     Button reset;
-    Handler handle;
 
     HangMan hang;
 
@@ -120,8 +119,6 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
-
         });
 
         run.setOnClickListener(r -> {
@@ -132,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
 
                     Snackbar snack = Snackbar.make(r,"You Lose",Snackbar.LENGTH_LONG);
                     snack.show();
-                    //hang.resetGuess();
+                    
 
 
                 }
