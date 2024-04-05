@@ -1,6 +1,7 @@
 package com.example.android_final_project;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.Button;
@@ -8,6 +9,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -40,6 +42,9 @@ public class MainActivity extends AppCompatActivity {
 
     CustomAdapter adapter;
 
+
+
+
     public ArrayList<String> generateBlanks(int blankNumber){
 
         ArrayList<String> holder = new ArrayList<>();
@@ -53,6 +58,39 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    public AlertDialog.Builder generateDialog(boolean won){
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        if(won){
+
+            builder.setTitle(R.string.win);
+        } else{
+
+            builder.setTitle(R.string.lose);
+        }
+
+
+        builder.setMessage(R.string.game_message);
+
+        builder.setPositiveButton(R.string.no, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+
+                
+            }
+        });
+        builder.setNegativeButton(R.string.yes, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                // User cancels the dialog.
+                hang.resetGuess();
+            }
+        });
+
+
+        return builder;
+
+
+    }
 
     public void updateToNextWord(){
 
@@ -80,6 +118,8 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+
 
         hang = findViewById(R.id.hangMan);
         run = findViewById(R.id.run);
@@ -129,7 +169,10 @@ public class MainActivity extends AppCompatActivity {
 
                     Snackbar snack = Snackbar.make(r,"You Lose",Snackbar.LENGTH_LONG);
                     snack.show();
-                    
+
+                    AlertDialog dialog = generateDialog(false).create();
+                    dialog.show();
+
 
 
                 }
