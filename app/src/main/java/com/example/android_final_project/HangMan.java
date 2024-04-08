@@ -34,32 +34,24 @@ public class HangMan extends View {
     }
 
     public boolean failed(){
-
         if(this.wrongGuess < 6){
             return false;
         } else{
-
             return true;
         }
     }
 
     public void resetGuess(){
-
         this.wrongGuess = 0;
         invalidate();
     }
-    public void addWrongGuees(){
-
+    public void addWrongGuess(){
         this.wrongGuess+=1;
         invalidate();
-
     }
 
     @Override
     protected void onDraw(Canvas canvas){
-
-
-
         figurePaint = new Paint();
         figurePaint.setColor(Color.BLACK);
         figurePaint.setStrokeWidth(20);
