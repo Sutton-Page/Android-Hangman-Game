@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AlertDialog;
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     HangMan hang;
     RecyclerView word;
     EditText guessInput;
+    TextView wrongLetters;
     ArrayList<String> contentData;
     CustomAdapter adapter;
     public static String randomWord;
@@ -48,17 +50,27 @@ public class MainActivity extends AppCompatActivity {
             builder.setTitle(R.string.lose);
         }
         builder.setMessage(R.string.game_message);
-        builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+
+
+        builder.setPositiveButton(R.string.no, new DialogInterface.OnClickListener() {
+
+            public void onClick(DialogInterface dialog, int id) {
+                // User cancels the dialog.
+                Snackbar.make(reset, "Ok click reset if you want to start a new game!", Snackbar.LENGTH_LONG).show();
+
+
+            }
+
+        });
+        builder.setNegativeButton(R.string.yes, new DialogInterface.OnClickListener() {
+
             public void onClick(DialogInterface dialog, int id) {
                 hang.resetGuess();
                 resetGame();
+
+                wrongLetters.setText("Letters Guessed: ");
             }
-        });
-        builder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                // User cancels the dialog.
-                Toast.makeText(MainActivity.this, "You have won this game already! Click reset to start a new game", Toast.LENGTH_SHORT).show();
-            }
+
         });
 
         return builder;
@@ -109,6 +121,7 @@ public static List<Integer> getLetterIndexes(String randomWord, String userInput
         reset = findViewById(R.id.gameReset);
         word = findViewById(R.id.word);
         guessInput = findViewById(R.id.guessInput);
+        wrongLetters = findViewById(R.id.wrongGuess);
         lengthMatched = 0;
 
         RandomWordGenerator wordGenerator = new RandomWordGenerator(this);
@@ -123,7 +136,10 @@ public static List<Integer> getLetterIndexes(String randomWord, String userInput
         word.setAdapter(adapter);
         word.setLayoutManager(new GridLayoutManager(this,5));
 
-        reset.setOnClickListener(r -> resetGame());
+        reset.setOnClickListener(r -> {
+            resetGame();
+            wrongLetters.setText("Letters Guessed: ");
+        });
 
         run.setOnClickListener(r -> {
             indexes.clear();
@@ -180,6 +196,8 @@ public static List<Integer> getLetterIndexes(String randomWord, String userInput
                     }
                 } else {
                     hang.addWrongGuess();
+                    // updating textview with wrong letter guess
+                    wrongLetters.append(userInput + " , ");
                     Toast.makeText(this, "Letter Not Found", Toast.LENGTH_SHORT).show();
                 }
             }
