@@ -46,19 +46,17 @@ public class MainActivity extends AppCompatActivity {
 
         if(won){
             builder.setTitle(R.string.win);
+            builder.setMessage(R.string.game_message);
         } else{
             builder.setTitle(R.string.lose);
+            builder.setMessage("The correct word was: " + randomWord + "\n\n" + getString(R.string.game_message) );
         }
-        builder.setMessage(R.string.game_message);
-
 
         builder.setPositiveButton(R.string.no, new DialogInterface.OnClickListener() {
 
             public void onClick(DialogInterface dialog, int id) {
                 // User cancels the dialog.
                 Snackbar.make(reset, "Ok click reset if you want to start a new game!", Snackbar.LENGTH_LONG).show();
-
-
             }
 
         });
@@ -67,10 +65,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int id) {
                 hang.resetGuess();
                 resetGame();
-
-                wrongLetters.setText("Letters Guessed: ");
+                wrongLetters.setText("Letters Guessed Incorrectly: ");
             }
-
         });
 
         return builder;
@@ -138,7 +134,7 @@ public static List<Integer> getLetterIndexes(String randomWord, String userInput
 
         reset.setOnClickListener(r -> {
             resetGame();
-            wrongLetters.setText("Letters Guessed: ");
+            wrongLetters.setText("Letters Guessed Incorrectly: ");
         });
 
         run.setOnClickListener(r -> {
