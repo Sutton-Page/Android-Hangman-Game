@@ -141,17 +141,12 @@ public static List<Integer> getLetterIndexes(String randomWord, String userInput
             indexes.clear();
             System.out.println("Random Word: " + randomWord);
             userInput = guessInput.getText().toString();
-            System.out.println("Length matched: "+ lengthMatched );
             if(userInput.isEmpty()){
                 Toast.makeText(this, "Guess cannot be empty. Please guess a letter!", Toast.LENGTH_SHORT).show();
             }
             else{
                 indexes = getLetterIndexes(randomWord, userInput);
-                System.out.println("Indexes size is: " + indexes.size());
 
-                for(int i : indexes){
-                    System.out.println("Character is: " + i);
-                }
                 if (!indexes.isEmpty()) {
                     boolean letterAlreadyFound = false;
                     for (String letter : test) {
@@ -191,10 +186,15 @@ public static List<Integer> getLetterIndexes(String randomWord, String userInput
                         dialog.show();
                     }
                 } else {
-                    hang.addWrongGuess();
                     // updating textview with wrong letter guess
-                    wrongLetters.append(userInput + " , ");
-                    Toast.makeText(this, "Letter Not Found", Toast.LENGTH_SHORT).show();
+                    if(!wrongLetters.getText().toString().contains(userInput)){
+                        hang.addWrongGuess();
+                        wrongLetters.append(userInput + " , ");
+                        Toast.makeText(this, "Letter Not Found", Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                        Toast.makeText(this, "You have already tried to guess this incorrect letter. Try again", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
                 if(hang.failed()) {
