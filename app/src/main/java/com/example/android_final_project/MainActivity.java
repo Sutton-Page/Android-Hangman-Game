@@ -166,7 +166,6 @@ public static List<Integer> getLetterIndexes(String randomWord, String userInput
                         lengthMatched += indexes.size();
                     }
 
-
                     for (int index : indexes) {
                         if(index == 0){ //if its the first letter, make it uppercase
                             test.set(index, userInput.toUpperCase());
@@ -181,7 +180,6 @@ public static List<Integer> getLetterIndexes(String randomWord, String userInput
                     word.setAdapter(adapter);
                     word.setLayoutManager(new GridLayoutManager(this,5));
 
-                    System.out.println("Length matched: " + lengthMatched);
                     if( lengthMatched == randomWord.length()){
                         Snackbar snack = Snackbar.make(r,"You Win",Snackbar.LENGTH_LONG);
                         snack.show();
@@ -189,9 +187,6 @@ public static List<Integer> getLetterIndexes(String randomWord, String userInput
                         dialog.show();
                     }
                 } else {
-                    // updating textview with wrong letter guess
-                    //String wrongGueses = wrongLetters.getText().toString();
-
                     if(!this.wrongLetterGuesses.contains(userInput)){
                         hang.addWrongGuess();
                         wrongLetters.append(userInput + " , ");

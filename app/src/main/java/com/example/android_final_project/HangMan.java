@@ -87,41 +87,6 @@ public class HangMan extends View {
         // Draw left leg
         if(this.wrongGuess >= 6) {
             canvas.drawLine(350, 250, 300, 350, paint); // Draw left leg
-
         }
-
-
-
-
-        /*
-        // Draw scaffold
-        canvas.drawLine(100, 600, 400, 600, paint);
-        canvas.drawLine(250, 600, 250, 200, paint);
-        canvas.drawLine(250, 200, 350, 200, paint);
-        canvas.drawLine(350, 200, 350, 250, paint);
-
-        // Draw head
-        canvas.drawCircle(350, 225, 50, paint);
-
-        // Draw body
-        canvas.drawLine(350, 250, 350, 400, paint);
-
-        // Draw right arm
-        canvas.drawLine(350, 350, 400, 300, paint);
-
-        // Draw left arm
-        canvas.drawLine(350, 350, 300, 300, paint);
-
-        // Draw right leg
-        canvas.drawLine(350, 400, 400, 500, paint);
-
-        // Draw left leg
-        canvas.drawLine(350, 400, 300, 500, paint); */
-
-
-
-
     }
-
-
 }

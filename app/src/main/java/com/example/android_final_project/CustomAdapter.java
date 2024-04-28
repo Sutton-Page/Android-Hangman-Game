@@ -1,7 +1,5 @@
 package com.example.android_final_project;
 
-
-import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.StyleSpan;
