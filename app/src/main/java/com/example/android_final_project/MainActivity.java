@@ -33,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
     public static ArrayList<String> test = new ArrayList<>();
     public static List<Integer> indexes = new ArrayList<>();
 
+    private String wrongLetterGuesses = "";
+
     public ArrayList<String> generateBlanks(int blankNumber){
         ArrayList<String> holder = new ArrayList<>();
         for(int i = 0; i < blankNumber; i++){
@@ -78,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
         gameMessage.show();
         updateToNextWord();
         lengthMatched = 0;
+        this.wrongLetterGuesses = "";
     }
     //generating blanks for the new word after resetting
     public void updateToNextWord(){
@@ -187,10 +190,13 @@ public static List<Integer> getLetterIndexes(String randomWord, String userInput
                     }
                 } else {
                     // updating textview with wrong letter guess
-                    if(!wrongLetters.getText().toString().contains(userInput)){
+                    //String wrongGueses = wrongLetters.getText().toString();
+
+                    if(!this.wrongLetterGuesses.contains(userInput)){
                         hang.addWrongGuess();
                         wrongLetters.append(userInput + " , ");
                         Toast.makeText(this, "Letter Not Found", Toast.LENGTH_SHORT).show();
+                        wrongLetterGuesses+= userInput;
                     }
                     else{
                         Toast.makeText(this, "You have already tried to guess this incorrect letter. Try again", Toast.LENGTH_SHORT).show();
