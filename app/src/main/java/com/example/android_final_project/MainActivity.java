@@ -81,6 +81,8 @@ public class MainActivity extends AppCompatActivity {
         updateToNextWord();
         lengthMatched = 0;
         this.wrongLetterGuesses = "";
+        System.out.println("Random Word: " + randomWord);
+        indexes.clear();
     }
     //generating blanks for the new word after resetting
     public void updateToNextWord(){
@@ -175,6 +177,9 @@ public static List<Integer> getLetterIndexes(String randomWord, String userInput
                             test.set(index, userInput);
                         }
                     }
+
+
+
                     this.contentData = test;
                     adapter = new CustomAdapter(this.contentData);
                     word.setAdapter(adapter);
