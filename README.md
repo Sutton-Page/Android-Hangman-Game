@@ -3,11 +3,11 @@ This project was a final assignment for my Android Development class in college.
 
 ## Project Screenshots
 ### Main Page
-![](./screenshots/basic.PNG)
+![](./screenshots/basic.png)
 
 ### After making a guess
-![](./screenshots/guess.PNG)
+![](./screenshots/guess.png)
 
 ### Losing the game
-![](./screenshots/lost.PNG)
+![](./screenshots/lost.png)
 
