@@ -3,7 +3,7 @@ This project was a final assignment for my Android Development class in college.
 
 ## Project Screenshots
 ### Main Page
-![](./screenshots/basic.png)
+![](./screenshots/basic-ex.png)
 
 ### After making a guess
 ![](./screenshots/guess.png)
