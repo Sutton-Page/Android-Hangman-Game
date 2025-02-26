@@ -1,5 +1,5 @@
 # Project Description
-This project was a final assignment for my Android Development class in college. We were tasked with creating an app for the final project and me and a classmate decided to create a simple hangman game.
+This project was my final assignment for an Android Development class in college. For the final project, a classmate and I decided to create a simple Hangman game.
 
 ## Project Screenshots
 ### Main Page
